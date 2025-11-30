@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<title>BookScan - Collection Manager</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<div id="app">
+		<!-- Header -->
+		<header class="app-header">
+			<h1>📚 BookScan</h1>
+			<button id="btn-settings" class="icon-btn" aria-label="Settings">⚙️</button>
+		</header>
+
+		<!-- Main Container -->
+		<main id="main-view">
+			<!-- Collections View (Default) -->
+			<div id="collections-view" class="view active">
+				<div class="view-header">
+					<h2>My Collections</h2>
+					<button id="btn-new-collection" class="btn btn-primary">+ New Collection</button>
+				</div>
+				<div id="collections-list" class="collections-grid">
+					<!-- Collections will be dynamically added here -->
+				</div>
+				<div class="export-all-section">
+					<button id="btn-export-all" class="btn btn-secondary btn-large">📥 Export All Collections to
+						CSV</button>
+				</div>
+			</div>
+
+			<!-- Collection Detail View -->
+			<div id="collection-detail-view" class="view">
+				<div class="view-header">
+					<button id="btn-back" class="btn btn-secondary">← Back</button>
+					<h2 id="collection-title">Collection Name</h2>
+					<button id="btn-collection-menu" class="icon-btn">⋮</button>
+				</div>
+
+				<div class="action-buttons">
+					<button id="btn-scan-book" class="btn btn-primary btn-large">📷 Scan Book</button>
+					<button id="btn-add-manual" class="btn btn-secondary btn-large">✏️ Add Manually</button>
+				</div>
+
+				<div class="export-buttons">
+					<button id="btn-export-collection" class="btn btn-secondary btn-small">📥 Export to CSV</button>
+				</div>
+
+				<div id="books-list" class="books-list">
+					<!-- Books will be dynamically added here -->
+				</div>
+			</div>
+
+			<!-- Scanner View -->
+			<div id="scanner-view" class="view">
+				<div class="view-header">
+					<button id="btn-close-scanner" class="btn btn-secondary">✕ Close</button>
+					<h2>Scan ISBN Barcode</h2>
+				</div>
+				<div id="scanner-container">
+					<div id="reader"></div>
+				</div>
+				<div id="scanner-status" class="scanner-status"></div>
+			</div>
+		</main>
+
+		<!-- Modal for New Collection -->
+		<div id="modal-new-collection" class="modal">
+			<div class="modal-content">
+				<h3>New Collection</h3>
+				<input type="text" id="input-collection-name" class="input-text" placeholder="Collection name"
+					maxlength="50">
+				<div class="modal-actions">
+					<button id="btn-cancel-collection" class="btn btn-secondary">Cancel</button>
+					<button id="btn-save-collection" class="btn btn-primary">Create</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal for Manual Book Entry -->
+		<div id="modal-add-book" class="modal">
+			<div class="modal-content">
+				<h3>Add Book Manually</h3>
+				<input type="text" id="input-isbn" class="input-text" placeholder="ISBN (optional)" maxlength="13">
+				<input type="text" id="input-title" class="input-text" placeholder="Title *" required>
+				<input type="text" id="input-author" class="input-text" placeholder="Author">
+				<input type="text" id="input-publisher" class="input-text" placeholder="Publisher">
+				<input type="number" id="input-year" class="input-text" placeholder="Year" min="1000" max="9999">
+				<div class="modal-actions">
+					<button id="btn-cancel-book" class="btn btn-secondary">Cancel</button>
+					<button id="btn-save-book" class="btn btn-primary">Add Book</button>
+				</div>
+				<!-- Modal for Collection Menu -->
+				<div id="modal-collection-menu" class="modal">
+					<div class="modal-content">
+						<h3>Collection Options</h3>
+						<button id="btn-rename-collection" class="btn btn-secondary btn-large">✏️ Rename</button>
+						<button id="btn-export-collection-menu" class="btn btn-secondary btn-large">📥 Export to
+							CSV</button>
+						<button id="btn-delete-collection" class="btn btn-danger btn-large">🗑️ Delete
+							Collection</button>
+						<button id="btn-cancel-menu" class="btn btn-secondary btn-large">Cancel</button>
+					</div>
+				</div> <button id="btn-delete-collection" class="btn btn-danger btn-large">🗑️ Delete
+					Collection</button>
+				<button id="btn-cancel-menu" class="btn btn-secondary btn-large">Cancel</button>
+			</div>
+		</div>
+
+		<!-- Loading Overlay -->
+		<div id="loading-overlay" class="loading-overlay">
+			<div class="spinner"></div>
+			<p>Loading...</p>
+		</div>
+
+		<!-- Toast Notification -->
+		<div id="toast" class="toast"></div>
+	</div>
+
+	<!-- Scripts -->
+	<script type="module" src="dist/bundle.js"></script>
+</body>
+
+</html>
